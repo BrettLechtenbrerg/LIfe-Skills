@@ -5,7 +5,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import Layout from './components/layout/Layout';
 import Dashboard from './pages/Dashboard';
 import LifeSkills from './pages/LifeSkills';
-import GritTraining from './pages/GritTraining';
+import LifeSkillTraining from './pages/LifeSkillTraining';
 import Progress from './pages/Progress';
 import Settings from './pages/Settings';
 import './App.css';
@@ -67,7 +67,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
             <Route path="lifeskills" element={<LifeSkills />} />
-            <Route path="lifeskills/:slug" element={<GritTraining />} />
+            <Route path="lifeskills/:slug" element={<LifeSkillTraining />} />
             <Route path="progress" element={<Progress />} />
             <Route path="settings" element={<Settings />} />
             <Route path="profile" element={<div className="text-center py-12"><h2 className="text-2xl font-bold">User Profile</h2><p className="text-gray-600 mt-2">Coming Soon!</p></div>} />

@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Life Skills",
+  "name": "Martial Arts Life Skills Training App",
+  "description": "Interactive life skills training through martial arts principles",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +21,8 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait-primary",
+  "theme_color": "#fbbf24",
+  "background_color": "#ffffff",
+  "categories": ["education", "lifestyle", "sports"]
 }

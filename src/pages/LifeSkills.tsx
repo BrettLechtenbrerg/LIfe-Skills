@@ -31,18 +31,8 @@ const LifeSkills: React.FC = () => {
     color: colorMap[skill.id] || 'from-gray-500 to-blue-500'
   }));
 
-  // Add placeholder skills for upcoming features
-  const placeholderSkills = [
-    {
-      id: 'discipline',
-      title: 'Discipline', 
-      description: 'Master self-control and consistent practice habits.',
-      icon: '🎯',
-      color: 'from-green-500 to-teal-500'
-    }
-  ];
-
-  const allSkills = [...skillDisplayData, ...placeholderSkills];
+  // No placeholder skills needed - all are now functional!
+  const allSkills = skillDisplayData;
 
   const handleGeneratorClose = () => {
     setShowGenerator(false);
@@ -116,13 +106,13 @@ const LifeSkills: React.FC = () => {
         ))}
       </div>
 
-      {/* Create Your Own / Coming Soon */}
+      {/* Create Your Own - Unlimited Possibilities */}
       <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-lg p-6 text-center">
         <span className="text-4xl mb-4 block">🤖</span>
         <h3 className="text-lg font-semibold text-gray-900 mb-2">Create Any Life Skill You Need!</h3>
         <p className="text-gray-600 mb-4">
-          Use the AI-powered generator to create unlimited life skills: Leadership, Teamwork, 
-          Patience, Focus, Courage, Humility, and more!
+          You now have 4 complete life skills! Use the AI-powered generator to create unlimited additional programs: 
+          Leadership, Teamwork, Patience, Focus, Courage, Humility, Wisdom, Integrity, and more!
         </p>
         <button
           onClick={() => setShowGenerator(true)}

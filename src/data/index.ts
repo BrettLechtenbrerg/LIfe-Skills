@@ -2,20 +2,22 @@
 import { gritTrainingData } from './gritTrainingData';
 import { respectTrainingData } from './respectTrainingData';
 import { confidenceTrainingData } from './confidenceTrainingData';
+import { disciplineTrainingData } from './disciplineTrainingData';
 import { LifeSkill } from '../types';
 import { getGeneratedLifeSkills } from '../utils/lifeskillStorage';
 
 // Export individual training modules
-export { gritTrainingData, respectTrainingData, confidenceTrainingData };
+export { gritTrainingData, respectTrainingData, confidenceTrainingData, disciplineTrainingData };
 
 // Static/built-in life skills
 export const staticLifeSkills: LifeSkill[] = [
   gritTrainingData,
   respectTrainingData,
-  confidenceTrainingData
+  confidenceTrainingData,
+  disciplineTrainingData
   // Future modules will be added here:
-  // disciplineTrainingData,
   // leadershipTrainingData,
+  // patienceTrainingData,
   // etc.
 ];
 

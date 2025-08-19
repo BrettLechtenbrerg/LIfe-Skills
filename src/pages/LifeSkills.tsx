@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useApp } from '../contexts/AppContext';
 import { useLifeSkills } from '../hooks/useLifeSkills';
+import LifeSkillGenerator from '../components/generator/LifeSkillGenerator';
+import { LifeSkill } from '../types';
 
 const LifeSkills: React.FC = () => {
-  const { state } = useApp();
-  const { lifeSkills, loading } = useLifeSkills();
+  const { lifeSkills, reloadLifeSkills } = useLifeSkills();
+  const [showGenerator, setShowGenerator] = useState(false);
 
   // Map actual skills to display data with icons and colors
   const iconMap: { [key: string]: string } = {
@@ -50,15 +52,40 @@ const LifeSkills: React.FC = () => {
 
   const allSkills = [...skillDisplayData, ...placeholderSkills];
 
+  const handleGeneratorClose = () => {
+    setShowGenerator(false);
+  };
+
+  const handleLifeSkillGenerated = (newSkill: LifeSkill) => {
+    // Reload life skills to include the new one
+    reloadLifeSkills();
+    setShowGenerator(false);
+  };
+
   return (
     <div className="space-y-8">
       {/* Header */}
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Life Skills Training</h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Develop character and leadership through martial arts principles. 
-          Each skill includes parables, exercises, and practical applications.
-        </p>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+          <div className="text-left md:text-center flex-1">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Life Skills Training</h1>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Develop character and leadership through martial arts principles. 
+              Each skill includes parables, exercises, and practical applications.
+            </p>
+          </div>
+          <div className="mt-4 md:mt-0 md:ml-6">
+            <button
+              onClick={() => setShowGenerator(true)}
+              className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-200 transform hover:scale-105 flex items-center space-x-2"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+              <span>Create New Life Skill</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Life Skills Grid */}
@@ -106,6 +133,14 @@ const LifeSkills: React.FC = () => {
           Patience, and Focus. Stay tuned for updates!
         </p>
       </div>
+
+      {/* Life Skill Generator Modal */}
+      {showGenerator && (
+        <LifeSkillGenerator
+          onClose={handleGeneratorClose}
+          onGenerated={handleLifeSkillGenerated}
+        />
+      )}
     </div>
   );
 };

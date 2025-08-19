@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useApp } from '../contexts/AppContext';
-import { allLifeSkills } from '../data';
+import { getAllLifeSkills } from '../data';
 
 /**
  * Custom hook for loading and managing life skills data
@@ -8,22 +8,27 @@ import { allLifeSkills } from '../data';
 export const useLifeSkills = () => {
   const { state, dispatch } = useApp();
 
-  // Load life skills data on mount
-  useEffect(() => {
+  // Function to reload life skills (including generated ones)
+  const reloadLifeSkills = useCallback(() => {
     dispatch({ type: 'SET_LOADING', payload: true });
     
     try {
-      // In a real app, this would be an API call
-      // For now, we'll simulate loading from our static data
+      // Get all life skills (static + generated from localStorage)
       setTimeout(() => {
-        dispatch({ type: 'SET_LIFE_SKILLS', payload: allLifeSkills });
+        const allSkills = getAllLifeSkills();
+        dispatch({ type: 'SET_LIFE_SKILLS', payload: allSkills });
         dispatch({ type: 'SET_LOADING', payload: false });
-      }, 500); // Simulate network delay
+      }, 300); // Simulate brief loading
     } catch (error) {
       dispatch({ type: 'SET_ERROR', payload: 'Failed to load life skills data' });
       dispatch({ type: 'SET_LOADING', payload: false });
     }
   }, [dispatch]);
+
+  // Load life skills data on mount
+  useEffect(() => {
+    reloadLifeSkills();
+  }, [reloadLifeSkills]);
 
   // Helper function to get a specific life skill
   const getLifeSkill = (id: string) => {
@@ -42,7 +47,8 @@ export const useLifeSkills = () => {
     loading: state.loading,
     error: state.error,
     getLifeSkill,
-    setCurrentLifeSkill
+    setCurrentLifeSkill,
+    reloadLifeSkills
   };
 };
 

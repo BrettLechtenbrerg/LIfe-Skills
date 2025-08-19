@@ -1,0 +1,42 @@
+{
+  "life_skill_theme": "respect",
+  "age_groups": {
+    "young": {
+      "age_range": "6-10 years",
+      "definition": "Respect means treating others the way you want to be treated. In martial arts, respect is like being a good friend to everyone - listening when your instructor speaks, being kind to your training partners, and taking care of your dojo like it's your own home. When you show respect, you help create a safe and happy place where everyone can learn and grow together.",
+      "key_concepts": [
+        "Bowing to show we care about our instructors and training partners",
+        "Using kind words and gentle actions with everyone in class",
+        "Listening carefully when others are talking or teaching",
+        "Taking turns and sharing equipment without arguing",
+        "Keeping our training space clean and organized for everyone"
+      ]
+    },
+    "teen": {
+      "age_range": "11-17 years",
+      "definition": "Respect in martial arts means recognizing the value and dignity of every person while honoring the traditions and principles of your art. It involves understanding that everyone has something to teach and learn, regardless of their rank or experience level. True respect is demonstrated through consistent actions, thoughtful communication, and a commitment to creating an environment where everyone feels valued and can reach their potential.",
+      "key_concepts": [
+        "Demonstrating humility by acknowledging both your strengths and areas for improvement",
+        "Showing courtesy to all practitioners regardless of their skill level or background",
+        "Honoring martial arts traditions while understanding their deeper meaning and purpose",
+        "Taking responsibility for your actions and their impact on others in the dojo",
+        "Supporting your training partners' growth through encouragement and constructive feedback"
+      ]
+    },
+    "adult": {
+      "age_range": "18+ years",
+      "definition": "Respect in martial arts represents a fundamental understanding of interconnectedness and mutual dignity that extends far beyond courtesy or politeness. It encompasses a deep appreciation for the lineage of knowledge, the sacred responsibility of training safely with others who trust you with their wellbeing, and the recognition that every interaction is an opportunity to either elevate or diminish the martial arts community. This mature expression of respect becomes a cornerstone for leadership, mentorship, and personal character development.",
+      "key_concepts": [
+        "Embodying respect as a leadership quality that inspires and guides newer students",
+        "Understanding respect as reciprocal trust and the responsibility that comes with others' vulnerability",
+        "Honoring the lineage and sacrifices of those who preserved and transmitted martial knowledge",
+        "Integrating respectful principles into daily life decisions and interpersonal relationships",
+        "Recognizing respect as a pathway to deeper self-awareness and emotional intelligence"
+      ]
+    }
+  },
+  "universal_principles": {
+    "progression_notes": "Each age group builds upon the previous understanding, moving from basic behavioral expectations to deeper philosophical integration.",
+    "martial_arts_context": "All definitions and concepts are specifically tailored for martial arts training environments while maintaining broader life application."
+  }
+}

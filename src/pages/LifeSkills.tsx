@@ -7,24 +7,31 @@ const LifeSkills: React.FC = () => {
   const { state } = useApp();
   const { lifeSkills, loading } = useLifeSkills();
 
-  // Map actual skills to display data
+  // Map actual skills to display data with icons and colors
+  const iconMap = {
+    'grit': '💪',
+    'respect': '🙏',
+    'discipline': '🎯',
+    'confidence': '🌟'
+  };
+  
+  const colorMap = {
+    'grit': 'from-red-500 to-orange-500',
+    'respect': 'from-blue-500 to-purple-500',
+    'discipline': 'from-green-500 to-teal-500',
+    'confidence': 'from-yellow-500 to-orange-500'
+  };
+
   const skillDisplayData = lifeSkills.map(skill => ({
     id: skill.id,
     title: skill.title,
     description: skill.description,
-    icon: skill.id === 'grit' ? '💪' : '🥋',
-    color: skill.id === 'grit' ? 'from-red-500 to-orange-500' : 'from-blue-500 to-purple-500'
+    icon: iconMap[skill.id] || '🥋',
+    color: colorMap[skill.id] || 'from-gray-500 to-blue-500'
   }));
 
-  // Add placeholder skills for demo
+  // Add placeholder skills for upcoming features
   const placeholderSkills = [
-    {
-      id: 'respect',
-      title: 'Respect',
-      description: 'Learn to honor yourself, others, and your training environment.',
-      icon: '🙏',
-      color: 'from-blue-500 to-purple-500'
-    },
     {
       id: 'discipline',
       title: 'Discipline', 

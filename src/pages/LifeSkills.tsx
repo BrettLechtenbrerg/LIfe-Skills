@@ -39,13 +39,6 @@ const LifeSkills: React.FC = () => {
       description: 'Master self-control and consistent practice habits.',
       icon: '🎯',
       color: 'from-green-500 to-teal-500'
-    },
-    {
-      id: 'confidence',
-      title: 'Confidence',
-      description: 'Build unshakeable self-belief through progressive challenges.',
-      icon: '🌟',
-      color: 'from-yellow-500 to-orange-500'
     }
   ];
 
@@ -123,14 +116,20 @@ const LifeSkills: React.FC = () => {
         ))}
       </div>
 
-      {/* Coming Soon */}
-      <div className="bg-gray-100 rounded-lg p-6 text-center">
-        <span className="text-4xl mb-4 block">🚀</span>
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">More Skills Coming Soon</h3>
-        <p className="text-gray-600">
-          We're developing additional life skills modules including Leadership, Teamwork, 
-          Patience, and Focus. Stay tuned for updates!
+      {/* Create Your Own / Coming Soon */}
+      <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-lg p-6 text-center">
+        <span className="text-4xl mb-4 block">🤖</span>
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Create Any Life Skill You Need!</h3>
+        <p className="text-gray-600 mb-4">
+          Use the AI-powered generator to create unlimited life skills: Leadership, Teamwork, 
+          Patience, Focus, Courage, Humility, and more!
         </p>
+        <button
+          onClick={() => setShowGenerator(true)}
+          className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+        >
+          Create New Life Skill
+        </button>
       </div>
 
       {/* Life Skill Generator Modal */}

@@ -8,14 +8,14 @@ const LifeSkills: React.FC = () => {
   const { lifeSkills, loading } = useLifeSkills();
 
   // Map actual skills to display data with icons and colors
-  const iconMap = {
+  const iconMap: { [key: string]: string } = {
     'grit': '💪',
     'respect': '🙏',
     'discipline': '🎯',
     'confidence': '🌟'
   };
   
-  const colorMap = {
+  const colorMap: { [key: string]: string } = {
     'grit': 'from-red-500 to-orange-500',
     'respect': 'from-blue-500 to-purple-500',
     'discipline': 'from-green-500 to-teal-500',

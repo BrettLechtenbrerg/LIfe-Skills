@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useApp } from '../contexts/AppContext';
 import { useLifeSkills } from '../hooks/useLifeSkills';
 import LifeSkillGenerator from '../components/generator/LifeSkillGenerator';
 import { LifeSkill } from '../types';

@@ -82,17 +82,38 @@ const LifeSkillGenerator: React.FC<LifeSkillGeneratorProps> = ({ onClose, onGene
     setError('');
     
     try {
-      // This would call the AI agents - for now we'll simulate
-      // In a real implementation, these would be API calls to the AI agents
+      // Call the real AI API
+      const response = await fetch('/api/generate-lifeskill', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to generate content');
+      }
+
+      const data = await response.json();
       
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      if (!data.success || !data.lifeSkill) {
+        throw new Error('Invalid response from AI service');
+      }
+
+      setGeneratedContent(data.lifeSkill);
+      setCurrentStep(3);
+      
+    } catch (err: any) {
+      // Fallback to mock content if AI fails
+      console.warn('AI generation failed, using fallback content:', err);
       
       const slug = generateSlug(formData.topic);
       const id = slug;
       
-      // Mock generated content - in real implementation, this would come from AI agents
-      const mockGeneratedSkill: LifeSkill = {
+      // Fallback mock content
+      const fallbackSkill: LifeSkill = {
         id,
         title: formData.topic,
         slug,
@@ -225,12 +246,10 @@ const LifeSkillGenerator: React.FC<LifeSkillGeneratorProps> = ({ onClose, onGene
         ]
       };
       
-      setGeneratedContent(mockGeneratedSkill);
+      setGeneratedContent(fallbackSkill);
       setCurrentStep(3);
+      setError('AI generation unavailable. Using template content. You can edit this after saving.');
       
-    } catch (err) {
-      setError('Failed to generate content. Please try again.');
-      console.error('Generation error:', err);
     } finally {
       setIsGenerating(false);
     }
@@ -370,7 +389,7 @@ const LifeSkillGenerator: React.FC<LifeSkillGeneratorProps> = ({ onClose, onGene
       )}
       
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <h4 className="font-medium text-blue-900 mb-2">What will be generated:</h4>
+        <h4 className="font-medium text-blue-900 mb-2">🤖 AI will generate:</h4>
         <ul className="text-sm text-blue-700 space-y-1">
           <li>• Complete martial arts parable with teaching points</li>
           <li>• Age-appropriate explanations for young, teen, and adult students</li>
@@ -378,6 +397,7 @@ const LifeSkillGenerator: React.FC<LifeSkillGeneratorProps> = ({ onClose, onGene
           <li>• 5 actionable lessons for different age groups</li>
           <li>• 5 hands-on martial arts exercises</li>
         </ul>
+        <p className="text-xs text-blue-600 mt-2">Professional quality content ready to teach immediately!</p>
       </div>
     </div>
   );
@@ -481,8 +501,9 @@ const LifeSkillGenerator: React.FC<LifeSkillGeneratorProps> = ({ onClose, onGene
             <div className="flex items-center justify-center py-12">
               <div className="text-center">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-                <h3 className="text-lg font-semibold text-gray-900">Generating Life Skill Content</h3>
-                <p className="text-gray-600 mt-2">Using AI to create parable, lessons, quotes, and exercises...</p>
+                <h3 className="text-lg font-semibold text-gray-900">AI is Creating Your Life Skill Program</h3>
+                <p className="text-gray-600 mt-2">Generating parable, age-appropriate explanations, quotes, lessons, and exercises...</p>
+                <p className="text-sm text-gray-500 mt-1">This usually takes 15-30 seconds</p>
               </div>
             </div>
           )}
@@ -522,9 +543,19 @@ const LifeSkillGenerator: React.FC<LifeSkillGeneratorProps> = ({ onClose, onGene
               <button
                 onClick={generateContent}
                 disabled={isGenerating}
-                className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
               >
-                {isGenerating ? 'Generating...' : 'Generate Content'}
+                {isGenerating ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    <span>AI Generating...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>🤖</span>
+                    <span>Generate with AI</span>
+                  </>
+                )}
               </button>
             )}
             
